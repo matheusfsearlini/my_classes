@@ -1,0 +1,268 @@
+<div class="main-container">
+  <div class="header-container">
+    <div class="header p-d-flex p-jc-between">
+      <div class="left-container p-as-center">
+        <!-- Novo captador -->
+      </div>
+      <div class="right-container p-as-center p-ai-center">
+        <a [routerLink]="['/captors/list']">
+          <p><i class="pi pi-arrow-left"></i>Voltar</p>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="body-container">
+    <form method="post" #frm="ngForm" autocomplete="off">
+      <div class="col-md-12">
+        <div class="separated-group">
+          <p class="separated-title-text">Dados do cadastro</p>
+          <div class="row">
+
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Inicio</label>
+                <input class="form-control input-text-group" name="registrationDate" disabled="true"
+                  value="{{ user.registrationDate | date: 'dd/MM/yyyy' }}" />
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Situação</label>
+                <p-dropdown name="active" [(ngModel)]="user.active" placeholder="Selecione..."
+                  [options]="statusDropbox" required>
+                </p-dropdown>
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>ONG</label>
+                <input class="form-control input-text-group" name="captorAdditionalInfoTargetOngId" 
+                [(ngModel)]="ongName" disabled="true"/>
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Estado</label>
+                <input class="form-control input-text-group" name="captorAdditionalInfoState" 
+                [(ngModel)]="user.captorAdditionalInfo.state" disabled="true"/>                
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="separated-group ">
+          <div class="row">
+
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Cidade</label>
+                <input class="form-control input-text-group" name="captorAdditionalInfoCity" 
+                [(ngModel)]="user.captorAdditionalInfo.city" disabled="true"/>       
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Grupo</label>
+                <input class="form-control input-text-group" name="captorAdditionalInfoGroup"
+                 [(ngModel)]="user.captorAdditionalInfo.group" disabled="true"/>       
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="form-group">
+                <label>Referência</label>
+                <input class="form-control input-text-group" name="captorAdditionalInfoReference"
+                 [(ngModel)]="user.captorAdditionalInfo.reference" disabled="true"/>       
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="separated-group">
+          <p class="separated-title-text">Informações pessoais</p>
+          <div class="row">
+
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Nome completo</label>
+                <input pInputText type="text" class="form-control input-text-group" [(ngModel)]="user.completeName"
+                  name="completeName" placeholder="Nome" />
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>CPF</label>
+                <input pInputText cpfCnpj type="text" class="form-control input-text-group" name="registryNumber"
+                  placeholder="000.000.000-00" maxlength="14" [(ngModel)]="user.registryNumber" [disabled]="!addCaptor"/>
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Telefone</label>
+                <input pInputText phone type="text" class="form-control input-text-group" name="mobile"
+                  placeholder="(00) 00000-0000" [(ngModel)]="user.mobile" />
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>E-mail</label>
+                <input pInputText type="email" class="form-control input-text-group" name="email"
+                  placeholder="email@exemplo.com" [(ngModel)]="user.email" />
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="separated-group">
+          <p class="separated-title-text">Endereço</p>
+          <div class="row">
+
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>CEP</label>
+                <input pInputText type="text" class="form-control input-text-group" placeholder="CEP" name="zipCode" cep
+                  [(ngModel)]="user.captorAdditionalInfo.address.zipCode" (ngModelChange)="onChangeCep()" />
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Rua</label>
+                <input pInputText type="text" class="form-control input-text-group" placeholder="Logradouro"
+                  [disabled]="lockStreet" name="street" [(ngModel)]="user.captorAdditionalInfo.address.street" />
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Número</label>
+                <input pInputText type="text" class="form-control input-text-group"
+                  [(ngModel)]="user.captorAdditionalInfo.address.number" name="number" placeholder="Nº" />
+              </div>
+            </div>
+
+            <div class="col-md-3">
+              <div class="form-group">
+                <label>Complemento</label>
+                <input pInputText type="text" class="form-control input-text-group" name="complement"
+                  [(ngModel)]="user.captorAdditionalInfo.address.complement" placeholder="APT, Frente" />
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="separated-group">
+          <div class="row">
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Bairro</label>
+                <input pInputText type="text" class="form-control input-text-group" placeholder="Bairro" name="district"
+                  [disabled]="lockDistrict" [(ngModel)]="user.captorAdditionalInfo.address.district" />
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Estado</label>
+                <p-dropdown name="state" (onChange)="onChangeState($event.value.name, undefined)"
+                  placeholder="Selecione..." [disabled]="lockState" [options]="states" [(ngModel)]="stateSelected"
+                  required>
+                </p-dropdown>
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Cidade</label>
+                <p-dropdown name="city" placeholder="Selecione..." [options]="cities" [(ngModel)]="citySelected"
+                  [disabled]="lockCity" required>
+                </p-dropdown>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="separated-group">
+          <p class="separated-title-text">Senha</p>
+
+          <div class="row">
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Senha</label>
+                <input pInputText type="password" name="password" [(ngModel)]="password"
+                  class="form-control input-text-group" placeholder="Senha" (ngModelChange)="validationPassword()" />
+              </div>
+            </div>
+
+            <div class="col-md-4">
+              <div class="form-group">
+                <label>Confirmar senha</label>
+                <input pInputText type="password" name="passwordConfirm" [(ngModel)]="passwordConfirm"
+                  class="form-control input-text-group" placeholder="Confirmar senha"
+                  (ngModelChange)="confirmPassword()" />
+              </div>
+            </div>
+
+          </div>
+
+          <div *ngIf="!emptyPassword()" class="separated-area">
+            <div>
+              <p>
+                <i *ngIf="lowercase" class="fa fa-check-circle icon-password-valid" aria-hidden="true"></i>
+                <i *ngIf="!lowercase" class="fa fa-times-circle icon-password-invalid" aria-hidden="true"></i>
+                Letra minúscula
+              </p>
+            </div>
+            <div>
+              <p>
+                <i *ngIf="numberCharacter" class="fa fa-check-circle icon-password-valid" aria-hidden="true"></i>
+                <i *ngIf="!numberCharacter" class="fa fa-times-circle icon-password-invalid" aria-hidden="true"></i>
+                Número
+              </p>
+            </div>
+            <div>
+              <p>
+                <i *ngIf="uppercase" class="fa fa-check-circle icon-password-valid" aria-hidden="true"></i>
+                <i *ngIf="!uppercase" class="fa fa-times-circle icon-password-invalid" aria-hidden="true"></i>
+                Letra maiúscula
+              </p>
+            </div>
+            <div>
+              <p>
+                <i *ngIf="minCharacters" class="fa fa-check-circle icon-password-valid" aria-hidden="true"></i>
+                <i *ngIf="!minCharacters" class="fa fa-times-circle icon-password-invalid" aria-hidden="true"></i>
+                Ao menos 6 dígitos
+              </p>
+            </div>
+            <div>
+              <p>
+                <i *ngIf="checkPasswordConfirm" class="fa fa-check-circle icon-password-valid" aria-hidden="true"></i>
+                <i *ngIf="!checkPasswordConfirm" class="fa fa-times-circle icon-password-invalid"
+                  aria-hidden="true"></i>
+                Senhas coincidem
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </form>
+    <div class="p-d-flex p-jc-end">
+      <button type="submit" class="btn btn-primary" (click)="saveActionBtn()" [disabled]="lockSaveBtn()">SALVAR
+        ALTERAÇÕES</button>
+    </div>
+  </div>
+</div>
