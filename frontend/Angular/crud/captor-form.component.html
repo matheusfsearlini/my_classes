@@ -2,7 +2,6 @@
   <div class="header-container">
     <div class="header p-d-flex p-jc-between">
       <div class="left-container p-as-center">
-        <!-- Novo captador -->
       </div>
       <div class="right-container p-as-center p-ai-center">
         <a [routerLink]="['/captors/list']">
@@ -32,14 +31,6 @@
                 <p-dropdown name="active" [(ngModel)]="user.active" placeholder="Selecione..."
                   [options]="statusDropbox" required>
                 </p-dropdown>
-              </div>
-            </div>
-
-            <div class="col-md-3">
-              <div class="form-group">
-                <label>ONG</label>
-                <input class="form-control input-text-group" name="captorAdditionalInfoTargetOngId" 
-                [(ngModel)]="ongName" disabled="true"/>
               </div>
             </div>
 
