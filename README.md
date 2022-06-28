@@ -21,7 +21,7 @@ Framework Angular 2+
     
 Back-end
 
-    Java: Usado java 8, maven, spring jpa e flyway.
+    Java: Usado java 8, maven, spring jpa e feign client.
       -endpoint account: Controller criado para cadastrar, atualizar, listar, inativar ou buscar por id usuário.
       -exception handler: Classes criadas para tratar erros.
     
