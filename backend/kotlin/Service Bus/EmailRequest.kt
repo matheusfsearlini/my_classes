@@ -1,4 +1,4 @@
-package br.com.code5.commons.sb.schema
+package br.com.commons.sb.schema
 
 data class EmailRequest(
     val toEmail: String,
